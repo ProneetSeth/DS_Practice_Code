@@ -19,6 +19,12 @@
 // col (of the point of exit)
 
 
+//reference
+// east = i, j+1
+//south = i+1, j 
+//west = i, j-1
+//north = i-1, j
+
 package Two_D_Array;
 import java.util.*;
 public class Exit_Point_Of_Matrix {
