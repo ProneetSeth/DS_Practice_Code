@@ -18,25 +18,43 @@ public class Climb_Stairs {
     public static void main(String[] args)throws Exception{
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
-        int cp = CountPaths(n, new int[n+1]);
-        System.out.println(cp);
+        // int cp = CountPaths(n, new int[n+1]);
+        int cpTab = CountPathsTab(n);
+        System.out.println(cpTab);
     }
 
-    public static int CountPaths(int n, int qb[]){
-        if(n == 0){
-            return 1;
+    // public static int CountPaths(int n, int qb[]){
+    //     if(n == 0){
+    //         return 1;
+    //     }
+    //     if(n < 0){
+    //         return 0;
+    //     }
+    //     if(qb[n]!=0){
+    //         return qb[n];
+    //     }
+    //     int nm1 = CountPaths(n-1, qb);
+    //     int nm2 = CountPaths(n-2, qb);
+    //     int nm3 = CountPaths(n-3, qb);
+    //     int cp = nm1 + nm2+ nm3;
+    //     qb[n] = cp;
+    //     return cp;
+    // }
+
+    public static int CountPathsTab(int n){
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        for(int i = 1; i <= n; i++){
+            if(i == 1){
+                dp[i] = dp[i - 1];
+            }else if(i == 2){
+                dp[i] = dp[i - 1] + dp[i - 2];
+            }
+            else{
+                dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+            }
         }
-        if(n < 0){
-            return 0;
-        }
-        if(qb[n]!=0){
-            return qb[n];
-        }
-        int nm1 = CountPaths(n-1, qb);
-        int nm2 = CountPaths(n-2, qb);
-        int nm3 = CountPaths(n-3, qb);
-        int cp = nm1 + nm2+ nm3;
-        qb[n] = cp;
-        return cp;
+
+        return dp[n];
     }
 }
